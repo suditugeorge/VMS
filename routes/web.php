@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'MainController@home');
+
+Route::get('/vms-admin', 'MainAdminController@home');
+
+Route::match(['get', 'post'], '/vms-admin/login', 'MainAdminController@login');
