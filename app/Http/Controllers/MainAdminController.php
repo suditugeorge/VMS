@@ -14,8 +14,8 @@ class MainAdminController extends Controller
 
     public function login(Request $request)
     {
-        if($request->isMethod('get')){
-            return view('admin.login',['show_navigation' => false]);
+        if ($request->isMethod('get')) {
+            return view('admin.login', ['show_navigation' => false]);
         }
     }
 }
