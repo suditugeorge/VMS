@@ -22,7 +22,9 @@ const mix = require('laravel-mix');
         './resources/assets/client/js/plugins/jasny-bootstrap.min.js',
         './resources/assets/client/js/plugins/nouislider.min.js'], '/client/js/plugins.js');*/
 
-mix.sass('./resources/assets/client/scss/now-ui-kit.scss', 'public/client/css/core/core.css').version()
-    .sass('./resources/assets/client/scss/tetravet-client.scss', 'public/client/css/core/tetravet.css').version()
+mix.sass('./resources/assets/client/scss/tetravet-client.scss', 'public/client/css/core/core.css')
     .sass('./resources/assets/admin/scss/now-ui-dashboard.scss', 'public/admin/css/core/core.css').version()
     .sass('./resources/assets/admin/scss/tetravet-admin.scss', 'public/admin/css/core/tetravet.css').version();
+
+
+mix.version();

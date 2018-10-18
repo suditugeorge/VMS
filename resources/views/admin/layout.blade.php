@@ -53,8 +53,7 @@
 <script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-notify.js') }}"></script>
 <script async type="text/javascript" src="{{ URL::asset('/admin/js/now-ui-dashboard.js') }}"></script>
 
-
-<script type="text/javascript" src="{{ URL::asset('/client/js/now-ui-kit.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('/admin/js/tetravet.js') }}"></script>
 
 @stack('scripts')
 

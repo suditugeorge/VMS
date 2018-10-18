@@ -10,4 +10,19 @@ class MainController extends Controller
     {
         return view('client.home');
     }
+
+    public function despreNoi()
+    {
+        return view('client.pages.despre_noi');
+    }
+
+    public function tarife()
+    {
+        return view('client.pages.tarife');
+    }
+
+    public function contact()
+    {
+        return view('client.pages.contact');
+    }
 }

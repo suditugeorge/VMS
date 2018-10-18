@@ -208,11 +208,13 @@ nowuiKit = {
       if (transparent) {
         transparent = false;
         $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
+        $('.logo-text').removeClass('white-color').addClass('primary-color');
       }
     } else {
       if (!transparent) {
         transparent = true;
         $('.navbar[color-on-scroll]').addClass('navbar-transparent');
+          $('.logo-text').addClass('white-color').removeClass('primary-color');
       }
     }
   }, 17),
@@ -410,9 +412,9 @@ nowuiKit = {
 
 
   initContactUs2Map: function() {
-    var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
+    var myLatlng = new google.maps.LatLng(44.4389125, 26.0295832);
     var mapOptions = {
-      zoom: 13,
+      zoom: 17,
       center: myLatlng,
       scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
       styles: [{
@@ -537,7 +539,7 @@ nowuiKit = {
 
     var marker = new google.maps.Marker({
       position: myLatlng,
-      title: "Hello World!"
+      title: "Tetravet Militari"
     });
 
     // To add the marker to the map, call setMap();

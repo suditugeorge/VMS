@@ -1,0 +1,27 @@
+@media (max-width: 991px) {
+    .footer{
+        .copyright{
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        &.image-left {
+            &.tetravet-image-left {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .tetravet-header {
+        text-align: center;
+    }
+    .tetravet-header-right {
+        margin-top: 50px;
+        word-break: normal;
+        text-align: center;
+    }
+}
+

@@ -1,16 +1,8 @@
-.full-page{
-  &:after{
-    background-color: white;
-  }
+.hidden{
+    display: none !important;
 }
-
 .login-page{
-  .card-login{
-    &.card-plain{
-      .form-control{
-        border: 1px solid #E3E3E3;
-        color: #2c2c2c !important;
-      }
+    &.full-page-background{
+        background-image: url("/core_images/Pets.jpg");
     }
-  }
 }

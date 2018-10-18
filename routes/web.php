@@ -11,8 +11,16 @@
 |
 */
 
+//Link-uri la care se ajunge doar daca esti admin
+Route::group(['middleware' => ['isLogedInAdmin']], function () {
+
+    Route::get('/vms-admin', 'MainAdminController@home');
+});
+
 Route::get('/', 'MainController@home');
 
-Route::get('/vms-admin', 'MainAdminController@home');
-
 Route::match(['get', 'post'], '/vms-admin/login', 'MainAdminController@login');
+
+Route::get('/despre-noi', 'MainController@despreNoi');
+Route::get('/tarife', 'MainController@tarife');
+Route::get('/contact', 'MainController@contact');

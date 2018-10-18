@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_email')->unique()->index();
-            $table->string('user_password');
+            $table->string('email')->unique()->index();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropUnique(['user_email']); // Drops index 'user_email'
+            $table->dropUnique(['email']); // Drops index 'email'
         });
         Schema::dropIfExists('users');
     }

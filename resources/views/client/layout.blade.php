@@ -16,7 +16,6 @@
     <!-- CSS Files -->
     <link href="{{URL::asset('/client/css/core/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{URL::asset('/client/css/core/core.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('/client/css/core/tetravet.css')}}" rel="stylesheet" />
 
     {{--Extra CSS--}}
     @stack('styles')
@@ -28,6 +27,8 @@
     @include('client.navigation')
 
     @yield('content')
+
+    @include('client.components.footer')
 
     <script type="text/javascript" src="{{ URL::asset('/client/js/core/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('/client/js/core/popper.min.js') }}"></script>

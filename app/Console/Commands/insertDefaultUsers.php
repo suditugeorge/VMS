@@ -40,8 +40,8 @@ class insertDefaultUsers extends Command
     public function handle()
     {
         $user = new User();
-        $user->user_email = 'suditugeorge94@gmail.com';
-        $user->user_password = Hash::make('kodacolor94');
+        $user->email = 'suditugeorge94@gmail.com';
+        $user->password = Hash::make('kodacolor94');
         $user->role_id = 1;
         $user->save();
     }

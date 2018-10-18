@@ -7,3 +7,13 @@
   background-image: url("/core_images/Pets.jpg");
 }
 
+.navbar-logo .logo-text {
+  color: #FFFFFF;
+  font-size: 25px;
+  vertical-align: text-top;
+  font-weight: bold;
+  text-transform: capitalize;
+  line-height: 1em;
+  text-decoration: none;
+}
+

@@ -1,0 +1,8 @@
+.hidden {
+  display: none !important;
+}
+
+.login-page.full-page-background {
+  background-image: url("/core_images/Pets.jpg");
+}
+

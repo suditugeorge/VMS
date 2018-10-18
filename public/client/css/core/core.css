@@ -10839,3 +10839,56 @@ img {
   }
 }
 
+@media (max-width: 991px) {
+  .footer .copyright {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container.image-left.tetravet-image-left {
+    margin-bottom: 0;
+  }
+
+  .tetravet-header {
+    text-align: center;
+  }
+
+  .tetravet-header-right {
+    margin-top: 50px;
+    word-break: normal;
+    text-align: center;
+  }
+}
+
+.img-fluid-small {
+  max-width: 45px;
+  height: auto;
+}
+
+.page-header-image {
+  background-image: url("/core_images/Pets.jpg");
+}
+
+.navbar-logo .logo-text {
+  font-size: 25px;
+  vertical-align: text-top;
+  font-weight: bold;
+  text-transform: capitalize;
+  line-height: 1em;
+  text-decoration: none;
+}
+
+.navbar-logo .logo-text.primary-color {
+  color: #f96332;
+}
+
+.navbar-logo .logo-text.white-color {
+  color: white;
+}
+
+.tetravet-header {
+  margin-top: 50px;
+  word-break: normal;
+}
+
