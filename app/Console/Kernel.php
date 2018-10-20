@@ -13,8 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\insertDefaultRoles::class,
-        Commands\insertDefaultUsers::class
+        Commands\insertDefaultData::class,
     ];
 
     /**

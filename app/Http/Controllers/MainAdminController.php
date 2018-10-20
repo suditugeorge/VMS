@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Http\Util\AdminUtil;
 
 class MainAdminController extends Controller
 {
     public function home()
     {
-//        Auth::logout();
-        die('cacat');
+        $oGeneral_data = new AdminUtil();
+        $aGeneral_data = $oGeneral_data->getGeneralData();
+        return view('admin.pages.dashboard', ['show_nagigation' => true, 'general_data' => $aGeneral_data]);
+
     }
 
     public function login(Request $request)
@@ -20,8 +23,8 @@ class MainAdminController extends Controller
             return view('admin.login', ['show_navigation' => false]);
         }
 
-        if($request->isMethod('post')){
-            try{
+        if ($request->isMethod('post')) {
+            try {
                 $sEmail = $request['email'];
                 $sPassword = $request['password'];
                 $bRemember = $request['remember'];
@@ -32,18 +35,18 @@ class MainAdminController extends Controller
                         'success' => false,
                         'message' => 'Aceast utilizator nu există.',
                     ]);
-                }elseif(Auth::attempt(['email' => $sEmail, 'password' => $sPassword], $bRemember)){
+                } elseif (Auth::attempt(['email' => $sEmail, 'password' => $sPassword], $bRemember)) {
                     $oUser = Auth::user();
                     return response()->json([
                         'success' => true,
                     ]);
-                }else{
+                } else {
                     return response()->json([
                         'success' => false,
                         'message' => 'Parola este greșită',
                     ]);
                 }
-            }catch(\Exception $e){
+            } catch (\Exception $e) {
                 dd($e);
                 return response()->json([
                     'success' => false,

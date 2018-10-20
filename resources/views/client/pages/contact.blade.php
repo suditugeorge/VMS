@@ -27,8 +27,8 @@
                                 </div>
                                 <div class="description">
                                     <h4 class="info-title">Sau ne puteți contacta la</h4>
-                                    <p><a href="mailto:mailto:cabinet@tetravetmilitari.ro"
-                                          class="btn btn-primary btn-simple btn-round">cabinet@tetravetmilitari.ro</a>
+                                    <p><a href="mailto:mailto:cabinet@tetravet.ro"
+                                          class="btn btn-primary btn-simple btn-round">cabinet@tetravet.ro</a>
                                         <br> 021.430.54.15
                                         <br> 0744.655.798
                                         <br> 0744.585.321

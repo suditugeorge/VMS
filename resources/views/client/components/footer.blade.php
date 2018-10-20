@@ -20,12 +20,11 @@
             </ul>
         </nav>
         <div class="copyright">
-            &copy;
+            &copy; Copyright
             <script>
                 document.write(new Date().getFullYear())
             </script>
-            , Designed and coded by
-            <a href="https://www.facebook.com/Suditu.George94" target="_blank">Suditu George - Alexandru</a>.
+            tetravet.ro Toate drepturile rezervate.
         </div>
     </div>
 </footer>

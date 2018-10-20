@@ -22,11 +22,11 @@
     @stack('styles')
 </head>
 
-<body class="@yield('body_class')">
+<body class="{{(isset($show_nagigation) && $show_nagigation) ? 'sidebar-mini' : ''}}">
 <input type="hidden" name="_token" value="{{Session::token()}}">
 
 @if (isset($show_nagigation) && $show_nagigation)
-    @include('admin.navigation')
+    @include('admin.components.navigation')
 @endif
 
 @yield('content')
