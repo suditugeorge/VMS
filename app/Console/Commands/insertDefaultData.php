@@ -65,7 +65,7 @@ class insertDefaultData extends Command
         $user = new User();
         $user->email = 'cabinet@tetravet.ro';
         $user->password = Hash::make('tetravet#1999');
-        $user->name = 'Cabinet';
+        $user->nume = 'Cabinet';
         $user->prenume = 'Tetravet';
         $user->telefon = '0214305415';
         $user->role_id = 1;
