@@ -47,12 +47,17 @@ class MainAdminController extends Controller
                     ]);
                 }
             } catch (\Exception $e) {
-                dd($e);
                 return response()->json([
                     'success' => false,
                     'message' => 'A intervenit o problemă! Vă rugăm să ne contactați telefonic.',
                 ]);
             }
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/vms-admin/login');
     }
 }

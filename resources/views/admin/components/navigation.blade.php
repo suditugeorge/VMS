@@ -48,59 +48,25 @@
         </div>
         <ul class="nav">
             @foreach($general_data['sidebar']['other_items'] as $nav)
-                @if(array_key_exists('susubmeniu', $nav))
+                @if(array_key_exists('submeniu', $nav))
                     <li>
-                        <a data-toggle="collapse" href="#pagesExamples">
-                            <i class="now-ui-icons design_image"></i>
+                        <a data-toggle="collapse" href="#{{$nav['collapse_id']}}">
+                            <i class="{{$nav['icon']}}"></i>
                             <p>
-                                Pages
+                                {{$nav['text']}}
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse " id="pagesExamples">
+                        <div class="collapse " id="{{$nav['collapse_id']}}">
                             <ul class="nav">
-                                <li>
-                                    <a href="../../examples/pages/pricing.html">
-                                        <span class="sidebar-mini-icon">P</span>
-                                        <span class="sidebar-normal"> Pricing </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../../examples/pages/rtl.html">
-                                        <span class="sidebar-mini-icon">RS</span>
-                                        <span class="sidebar-normal"> RTL Support </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../../examples/pages/timeline.html">
-                                        <span class="sidebar-mini-icon">T</span>
-                                        <span class="sidebar-normal"> Timeline </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../../examples/pages/login.html">
-                                        <span class="sidebar-mini-icon">L</span>
-                                        <span class="sidebar-normal"> Login </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../../examples/pages/register.html">
-                                        <span class="sidebar-mini-icon">R</span>
-                                        <span class="sidebar-normal"> Register </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../../examples/pages/lock.html">
-                                        <span class="sidebar-mini-icon">LS</span>
-                                        <span class="sidebar-normal"> Lock Screen </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../../examples/pages/user.html">
-                                        <span class="sidebar-mini-icon">UP</span>
-                                        <span class="sidebar-normal"> User Profile </span>
-                                    </a>
-                                </li>
+                                @foreach($nav['submeniu'] as $submeniu_item)
+                                    <li>
+                                        <a href="{{$submeniu_item['url']}}">
+                                            <span class="sidebar-mini-icon">{{$submeniu_item['small_text']}}</span>
+                                            <span class="sidebar-normal"> {{$submeniu_item['text']}} </span>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </li>

@@ -15,6 +15,12 @@
 Route::group(['middleware' => ['isLogedInAdmin']], function () {
 
     Route::get('/vms-admin', 'MainAdminController@home');
+    Route::get('/vms-admin/logout', 'MainAdminController@logout');
+
+    Route::get('/vms-admin/blog-categories', 'BlogCategoriesController@categoriiBlog');
+    Route::get('/vms-admin/sterge-categorie-blog/{id}', 'BlogCategoriesController@stergeCategorie');
+    Route::match(['get', 'post'], '/vms-admin/adauga-categorie-blog', 'BlogCategoriesController@adaugaCategorie');
+    Route::match(['get', 'post'], '/vms-admin/editeaza-categorie-blog/{id?}', 'BlogCategoriesController@editeazaCategorie');
 });
 
 Route::get('/', 'MainController@home');
