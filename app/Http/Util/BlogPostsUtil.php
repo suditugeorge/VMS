@@ -75,10 +75,13 @@ class BlogPostsUtil
         $oNewBlogPost->bcategory_id = $request->get('categorie_parinte');
         $oNewBlogPost->author_id = $this->aGeneralData['auth_user']['id'];
         $oNewBlogPost->save();
-        if (Storage::disk('blog_images')->exists($oNewBlogPost->code . '.jpg')) {
-            Storage::disk('blog_images')->delete($oNewBlogPost->code . '.jpg');
+
+        if(!$code || ($code && $request->poza_profil != null)){
+            if (Storage::disk('blog_images')->exists($oNewBlogPost->code . '.jpg')) {
+                Storage::disk('blog_images')->delete($oNewBlogPost->code . '.jpg');
+            }
+            $request->poza_profil->storeAs('', $oNewBlogPost->code . '.jpg', 'blog_images');
         }
-        $request->poza_profil->storeAs('', $oNewBlogPost->code . '.jpg', 'blog_images');
 
         return $aResult;
     }
