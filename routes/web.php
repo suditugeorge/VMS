@@ -17,10 +17,16 @@ Route::group(['middleware' => ['isLogedInAdmin']], function () {
     Route::get('/vms-admin', 'MainAdminController@home');
     Route::get('/vms-admin/logout', 'MainAdminController@logout');
 
+    //Categorii Blog
     Route::get('/vms-admin/blog-categories', 'BlogCategoriesController@categoriiBlog');
     Route::get('/vms-admin/sterge-categorie-blog/{id}', 'BlogCategoriesController@stergeCategorie');
     Route::match(['get', 'post'], '/vms-admin/adauga-categorie-blog', 'BlogCategoriesController@adaugaCategorie');
     Route::match(['get', 'post'], '/vms-admin/editeaza-categorie-blog/{id?}', 'BlogCategoriesController@editeazaCategorie');
+
+    //Postari Blog
+    Route::get('/vms-admin/blog-posts', 'BlogPostsController@postariBlog');
+    Route::match(['get', 'post'], '/vms-admin/postare-blog/{code?}', 'BlogPostsController@editeazaPostareBlog');
+    Route::get('/vms-admin/sterge-postare-blog/{code}', 'BlogPostsController@stergePostare');
 });
 
 Route::get('/', 'MainController@home');

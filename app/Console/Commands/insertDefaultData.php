@@ -71,7 +71,7 @@ class insertDefaultData extends Command
 
     private function insertUsers()
     {
-        $oUser = User::where('email', '=', 'suditugeorge94@gmail.com');
+        $oUser = User::where('email', '=', 'suditugeorge94@gmail.com')->first();
         if (!$oUser) {
             $oUser = new User();
             $oUser->email = 'suditugeorge94@gmail.com';
@@ -83,7 +83,7 @@ class insertDefaultData extends Command
             $oUser->save();
         }
 
-        $oUser = User::where('email', '=', 'cabinet@tetravet.ro');
+        $oUser = User::where('email', '=', 'cabinet@tetravet.ro')->first();
         if (!$oUser) {
             $oUser = new User();
             $oUser->email = 'cabinet@tetravet.ro';

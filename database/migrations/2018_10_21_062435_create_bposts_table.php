@@ -15,7 +15,9 @@ class CreateBpostsTable extends Migration
     {
         Schema::create('bposts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titlu', 125)->index();
+            $table->string('titlu', 125);
+            $table->boolean('active')->default(false);
+            $table->string('code', 125)->index();
             $table->boolean('are_imagine');
             $table->text('continut');
             $table->unsignedInteger('bcategory_id');
@@ -34,7 +36,7 @@ class CreateBpostsTable extends Migration
     public function down()
     {
         Schema::table('bposts', function (Blueprint $table) {
-            $table->dropIndex(['titlu']); // Drops index 'titlu'
+            $table->dropIndex(['code']); // Drops index 'code'
             $table->dropForeign('bposts_bcategory_id_foreign');
             $table->dropForeign('bposts_author_id_foreign');
         });

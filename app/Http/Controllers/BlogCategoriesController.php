@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Util\AdminUtil;
 use App\BlogCategories;
+use App\Http\Util\BlogCategoriesUtil;
 
 class BlogCategoriesController extends Controller
 {
@@ -12,7 +13,8 @@ class BlogCategoriesController extends Controller
     {
         $oGeneral_data = new AdminUtil();
         $aGeneral_data = $oGeneral_data->getGeneralData();
-        $aCategoriiBlog = $this->getCategoriiBlog(true);
+        $oBlogCategoriesUtil = new BlogCategoriesUtil();
+        $aCategoriiBlog = $oBlogCategoriesUtil->getCategoriiBlog(true);
         return view('admin.pages.blog.categories',[
             'show_nagigation' => true,
             'general_data' => $aGeneral_data,
@@ -25,8 +27,9 @@ class BlogCategoriesController extends Controller
         if ($request->isMethod('get')) {
             $oGeneral_data = new AdminUtil();
             $aGeneral_data = $oGeneral_data->getGeneralData();
-            $aCategoriiBlog = $this->getCategoriiBlog(false, true);
-            return view('admin.pages.blog.categorie_noua', [
+            $oBlogCategoriesUtil = new BlogCategoriesUtil();
+            $aCategoriiBlog = $oBlogCategoriesUtil->getCategoriiBlog(false, true);
+            return view('admin.pages.blog.categorie_blog', [
                 'show_nagigation' => true,
                 'general_data' => $aGeneral_data,
                 'categorii_blog' => $aCategoriiBlog,
@@ -74,9 +77,10 @@ class BlogCategoriesController extends Controller
 
             $oGeneral_data = new AdminUtil();
             $aGeneral_data = $oGeneral_data->getGeneralData();
-            $aCategoriiBlog = $this->getCategoriiBlog(false, true);
+            $oBlogCategoriesUtil = new BlogCategoriesUtil();
+            $aCategoriiBlog = $oBlogCategoriesUtil->getCategoriiBlog(false, true);
 
-            return view('admin.pages.blog.categorie_noua', [
+            return view('admin.pages.blog.categorie_blog', [
                 'show_nagigation' => true,
                 'general_data' => $aGeneral_data,
                 'categorii_blog' => $aCategoriiBlog,
@@ -140,19 +144,5 @@ class BlogCategoriesController extends Controller
             $aData['buton_formular_id'] = 'editeaza-categorie';
         }
         return $aData;
-    }
-
-    private function getCategoriiBlog($bCuParinte = false, $bCuCategorieImplicita = false)
-    {
-        if(!$bCuParinte){
-            $aCategoriiBlog = BlogCategories::all()->toArray();
-        }else{
-            $aCategoriiBlog = BlogCategories::with('parinte:id,bcategory_name');
-            if(!$bCuCategorieImplicita){
-                $aCategoriiBlog->where('id', '<>', 1);
-            }
-            $aCategoriiBlog = $aCategoriiBlog->get()->toArray();
-        }
-        return $aCategoriiBlog;
     }
 }
