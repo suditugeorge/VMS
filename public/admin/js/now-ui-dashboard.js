@@ -163,12 +163,15 @@ $(document).ready(function() {
   // Activate bootstrapSwitch
   $('.bootstrap-switch').each(function() {
     $this = $(this);
+    // console.log($this);
     data_on_label = $this.data('on-label') || '';
     data_off_label = $this.data('off-label') || '';
+    wrapperClass = $this.data('wrapper-class') || '';
 
     $this.bootstrapSwitch({
       onText: data_on_label,
-      offText: data_off_label
+      offText: data_off_label,
+      wrapperClass: wrapperClass
     });
   });
 

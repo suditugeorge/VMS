@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{URL::to('/contact')}}">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{URL::to('/blog')}}">Blog</a>
+                </li>
             </ul>
         </div>
     </div>

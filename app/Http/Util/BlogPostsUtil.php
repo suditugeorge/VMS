@@ -74,6 +74,12 @@ class BlogPostsUtil
         $oNewBlogPost->continut = $request->get('continut_blog');
         $oNewBlogPost->bcategory_id = $request->get('categorie_parinte');
         $oNewBlogPost->author_id = $this->aGeneralData['auth_user']['id'];
+        $sActiveBlog = $request->get('post_active');
+        if($sActiveBlog == 'on'){
+            $oNewBlogPost->active = true;
+        }else{
+            $oNewBlogPost->active = false;
+        }
         $oNewBlogPost->save();
 
         if(!$code || ($code && $request->poza_profil != null)){
@@ -99,17 +105,21 @@ class BlogPostsUtil
 
     public function getPostare($sCode, $bCuCategorie = false, $bNeedArray = true)
     {
-
         $aBlogPost = BlogPosts::where('code','=',$sCode);
         if($bCuCategorie){
             $aBlogPost->with('blog_categorie:id,bcategory_name');
         }
 
         $aBlogPost = $aBlogPost->first();
+
+        if(!$aBlogPost){
+            return null;
+        }
+
         if($bNeedArray){
             $aBlogPost = $aBlogPost->toArray();
+            $aBlogPost['blog_imagine'] = asset('/storage/blog_profile_images/'.$aBlogPost['code'].'.jpg');
         }
-        $aBlogPost['blog_imagine'] = asset('/storage/blog_profile_images/'.$aBlogPost['code'].'.jpg');
         return $aBlogPost;
     }
 

@@ -6,3 +6,11 @@
   background-image: url("/core_images/Pets.jpg");
 }
 
+.bootstrap-switch-align-baseline {
+  vertical-align: baseline !important;
+}
+
+.bootstrap-switch-align-middle {
+  vertical-align: middle !important;
+}
+

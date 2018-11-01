@@ -25,10 +25,13 @@
                                     <th class="text-center">
                                         Nume
                                     </th>
-                                    <th>
+                                    <th class="text-center">
+                                        Activ
+                                    </th>
+                                    <th class="text-center">
                                         Categorie Blog
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         Autor
                                     </th>
                                     <th class="text-right">
@@ -41,13 +44,16 @@
                                             <td class="text-center">
                                                 {{$postare['id']}}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$postare['titlu']}}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
+                                                {{$postare['active'] ? 'Da' : 'Nu'}}
+                                            </td>
+                                            <td class="text-center">
                                                 {{$postare['blog_categorie']['bcategory_name']}}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$postare['autor']['nume'].' '.$postare['autor']['prenume']}}
                                             </td>
                                             <td class="text-right">

@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="page-header">
-        <div class="page-header-image" data-parallax="true">
+        <div class="page-header-image" {{--data-parallax="true"--}}>
         </div>
         <div class="content-center">
             <div class="container">

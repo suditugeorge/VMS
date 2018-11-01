@@ -25,17 +25,33 @@
                     <form method="POST" action="{{$url_formular}}" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{Session::token()}}">
                         <div class="card-body">
-                            <label>Titlu</label>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="postare_nume" name="postare_nume" value="{{$aPostareDeEditat !== null ? $aPostareDeEditat['titlu'] : ''}}">
-                            </div>
-                            <label>Parinte</label>
-                            <div class="form-group">
-                                <select class="selectpicker" data-size="7" data-style="btn btn-primary btn-round" title="Parinte" id="categorie_parinte" name="categorie_parinte">
-                                    @foreach($categorii_blog as $categorie)
-                                        <option value="{{$categorie['id']}}" {{isset($aPostareDeEditat) && $aPostareDeEditat['blog_categorie']['id'] == $categorie['id'] ? 'selected' : ''}}>{{$categorie['bcategory_name']}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Titlu</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="postare_nume" name="postare_nume" value="{{$aPostareDeEditat !== null ? $aPostareDeEditat['titlu'] : ''}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Parinte</label>
+                                    <div class="form-group">
+                                        <select class="selectpicker" data-size="7" data-style="btn btn-primary btn-round" title="Parinte" id="categorie_parinte" name="categorie_parinte">
+                                            @foreach($categorii_blog as $categorie)
+                                                <option value="{{$categorie['id']}}" {{isset($aPostareDeEditat) && $aPostareDeEditat['blog_categorie']['id'] == $categorie['id'] ? 'selected' : ''}}>{{$categorie['bcategory_name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Activ</label>
+                                    <div class="form-group">
+                                        @if($aPostareDeEditat != null)
+                                            <input type="checkbox" {{$aPostareDeEditat['active'] ? 'checked' : ''}} name="post_active" class="bootstrap-switch" data-wrapper-class="align-middle" data-on-label="DA" data-off-label="NU" />
+                                        @else
+                                            <input type="checkbox" checked name="post_active" class="bootstrap-switch" data-wrapper-class="align-middle" data-on-label="DA" data-off-label="NU" />
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <label>Imagine de profil</label>
                             <div class="form-group">

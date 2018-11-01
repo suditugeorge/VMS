@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $("body").keyup(function (event) {
-        console.log(event.keyCode);
         if (event.keyCode === 13){
             $("#login_user").trigger('click');
         }

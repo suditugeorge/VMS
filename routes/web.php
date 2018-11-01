@@ -36,3 +36,6 @@ Route::match(['get', 'post'], '/vms-admin/login', 'MainAdminController@login');
 Route::get('/despre-noi', 'MainController@despreNoi');
 Route::get('/tarife', 'MainController@tarife');
 Route::get('/contact', 'MainController@contact');
+
+Route::get('/blog', 'MainController@blogPosts');
+Route::get('/postare-blog/{code}', 'MainController@blogPostare');
