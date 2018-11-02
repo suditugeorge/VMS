@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Role;
 use App\User;
 use App\BlogCategories;
+use App\Http\Util\StringUtil;
 
 class insertDefaultData extends Command
 {
@@ -55,6 +56,7 @@ class insertDefaultData extends Command
         }
         $oBlogCategorie = new BlogCategories();
         $oBlogCategorie->bcategory_name = $sCategoriePrincipala;
+        $oBlogCategorie->code = StringUtil::formatUrl($oBlogCategorie->bcategory_name);
         $oBlogCategorie->save();
     }
 

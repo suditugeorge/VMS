@@ -20,8 +20,7 @@ Route::group(['middleware' => ['isLogedInAdmin']], function () {
     //Categorii Blog
     Route::get('/vms-admin/blog-categories', 'BlogCategoriesController@categoriiBlog');
     Route::get('/vms-admin/sterge-categorie-blog/{id}', 'BlogCategoriesController@stergeCategorie');
-    Route::match(['get', 'post'], '/vms-admin/adauga-categorie-blog', 'BlogCategoriesController@adaugaCategorie');
-    Route::match(['get', 'post'], '/vms-admin/editeaza-categorie-blog/{id?}', 'BlogCategoriesController@editeazaCategorie');
+    Route::match(['get', 'post'], '/vms-admin/categorie-blog/{code?}', 'BlogCategoriesController@editeazaCategorie');
 
     //Postari Blog
     Route::get('/vms-admin/blog-posts', 'BlogPostsController@postariBlog');

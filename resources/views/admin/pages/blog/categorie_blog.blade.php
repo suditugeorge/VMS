@@ -10,15 +10,17 @@
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header ">
-                        <h4 class="card-title" data-id="{{isset($categorie_de_editat) ? $categorie_de_editat['id'] : ''}}" id="categorie-id">Categorie Blog {{$pagina_text['titlu']}}</h4>
+                        <h4 class="card-title">Categorie Blog {{$pagina_text['titlu']}}</h4>
                     </div>
                     <div class="card-body">
                         <label>Denumire categorie</label>
                         <div class="form-group">
                             @if(isset($categorie_de_editat))
                                 <input type="text" class="form-control" id="categorie-nume" value="{{$categorie_de_editat['bcategory_name']}}">
+                                <input type="hidden" id="categorie-code" value="{{$categorie_de_editat['code']}}">
                             @else
                                 <input type="text" class="form-control" id="categorie-nume">
+                                <input type="hidden" id="categorie-code" value="">
                             @endif
                         </div>
                         <label>Parinte</label>

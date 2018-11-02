@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title"> Categorii Blog</h4>
-                            <div class="mr-auto"><a href="{{URL::to('/vms-admin/adauga-categorie-blog')}}" class="btn btn-success">Adauga categorie</a></div>
+                            <div class="mr-auto"><a href="{{URL::to('/vms-admin/categorie-blog')}}" class="btn btn-success">Adauga categorie</a></div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -48,10 +48,10 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    <a href="/vms-admin/editeaza-categorie-blog/{{$categorie['id']}}" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
+                                                    <a href="/vms-admin/categorie-blog/{{$categorie['code']}}" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
                                                         <i class="now-ui-icons ui-2_settings-90"></i>
                                                     </a>
-                                                    <a href="/vms-admin/sterge-categorie-blog/{{$categorie['id']}}" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                                                    <a href="/vms-admin/sterge-categorie-blog/{{$categorie['code']}}" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
                                                         <i class="now-ui-icons ui-1_simple-remove"></i>
                                                     </a>
                                                 </td>

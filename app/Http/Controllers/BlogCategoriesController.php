@@ -22,63 +22,22 @@ class BlogCategoriesController extends Controller
         ]);
     }
 
-    public function adaugaCategorie(Request $request)
+    public function editeazaCategorie(Request $request, $code = null)
     {
+        $oBlogCategoriesUtil = new BlogCategoriesUtil();
         if ($request->isMethod('get')) {
+
             $oGeneral_data = new AdminUtil();
             $aGeneral_data = $oGeneral_data->getGeneralData();
-            $oBlogCategoriesUtil = new BlogCategoriesUtil();
             $aCategoriiBlog = $oBlogCategoriesUtil->getCategoriiBlog(false, true);
-            return view('admin.pages.blog.categorie_blog', [
-                'show_nagigation' => true,
-                'general_data' => $aGeneral_data,
-                'categorii_blog' => $aCategoriiBlog,
-                'pagina_text' => $this->getCategorieBlogTemplateText()
-            ]);
-        }elseif ($request->isMethod('post')){
-            try {
-                $sNumeCategorie = $request['categorie_nume'];
-                $sParinteCategorie = $request['categorie_parinte'];
 
-                $oBlogCategorie = BlogCategories::where('bcategory_name', '=', $sNumeCategorie)->first();
-                if($oBlogCategorie){
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Mai exista o categorie cu acelasi nume',
-                    ]);
+            $aCategorieBlog = null;
+            if(isset($code)){
+                $aCategorieBlog = BlogCategories::with('parinte:id,bcategory_name')->where('code', '=', $code)->first();
+                if(!$aCategorieBlog){
+                    return abort(404);
                 }
-
-                $oBlogCategorie = new BlogCategories();
-                $oBlogCategorie->bcategory_name = $sNumeCategorie;
-                $oBlogCategorie->bcategory_parent_id = $sParinteCategorie;
-                $oBlogCategorie->save();
-
-                return response()->json([
-                    'success' => true,
-                ]);
-
-            } catch (\Exception $e) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'A intervenit o problemă! Vă rugăm să ne contactați telefonic.',
-                ]);
             }
-        }
-    }
-
-    public function editeazaCategorie(Request $request, $id = null)
-    {
-        if ($request->isMethod('get')) {
-            $aCategorieBlog = BlogCategories::with('parinte:id,bcategory_name')->where('id', '=', $id)->first();
-            if(!$aCategorieBlog){
-                return abort(404);
-            }
-            $aCategorieBlog = $aCategorieBlog->toArray();
-
-            $oGeneral_data = new AdminUtil();
-            $aGeneral_data = $oGeneral_data->getGeneralData();
-            $oBlogCategoriesUtil = new BlogCategoriesUtil();
-            $aCategoriiBlog = $oBlogCategoriesUtil->getCategoriiBlog(false, true);
 
             return view('admin.pages.blog.categorie_blog', [
                 'show_nagigation' => true,
@@ -88,42 +47,32 @@ class BlogCategoriesController extends Controller
                 'categorie_de_editat' => $aCategorieBlog,
             ]);
         }elseif ($request->isMethod('post')){
-            try {
-                $sNumeCategorie = $request['categorie_nume'];
-                $sParinteCategorie = $request['categorie_parinte'];
-
-                $oBlogCategorie = BlogCategories::where('id', '=', $request['categorie_id'])->first();
-                if(!$oBlogCategorie){
+            //Categoria este noua
+            if(is_null($code)){
+                if($oBlogCategoriesUtil->exists(null, $request['categorie_nume'])){
                     return response()->json([
                         'success' => false,
-                        'message' => 'Aceasta categorie nu exista',
+                        'message' => 'Mai exista o categorie cu acelasi nume',
                     ]);
                 }
+                return response()->json($oBlogCategoriesUtil->salveazaCategorie($request));
+            }
 
-                $oBlogCategorie->bcategory_name = $sNumeCategorie;
-                $oBlogCategorie->bcategory_parent_id = $sParinteCategorie;
-                $oBlogCategorie->save();
-
-                return response()->json([
-                    'success' => true,
-                ]);
-
-            } catch (\Exception $e) {
+            //Categoria se editeaza
+            if(!$oBlogCategoriesUtil->exists($code, $request['categorie_nume'])){
                 return response()->json([
                     'success' => false,
-                    'message' => 'A intervenit o problemă! Vă rugăm să ne contactați telefonic.',
+                    'message' => 'Nu exista aceasta categorie'
                 ]);
             }
+            return response()->json($oBlogCategoriesUtil->salveazaCategorie($request, $code));
         }
-        return response()->json([
-            'success' => false,
-            'message' => 'A intervenit o problemă! Vă rugăm să ne contactați telefonic.',
-        ]);
+        return abort(404);
     }
 
-    public function stergeCategorie(Request $request, $id)
+    public function stergeCategorie(Request $request, $code)
     {
-        $oBlogCategorie = BlogCategories::where('id', '=', $id);
+        $oBlogCategorie = BlogCategories::where('code', '=', $code);
         if(!$oBlogCategorie){
             abort(404);
         }
@@ -134,15 +83,14 @@ class BlogCategoriesController extends Controller
     private function getCategorieBlogTemplateText($oCategorie = null)
     {
         $aData = [];
-        if(!$oCategorie){
-            $aData['titlu'] = 'Noua';
-            $aData['buton_formular_text'] = 'Creeaza';
-            $aData['buton_formular_id'] = 'creeaza-categorie';
-        }else{
+        $aData['buton_formular_text'] = 'Salveaza';
+        $aData['buton_formular_id'] = 'categorie-blog';
+        $aData['titlu'] = 'Noua';
+
+        if($oCategorie){
             $aData['titlu'] = $oCategorie['bcategory_name'];
-            $aData['buton_formular_text'] = 'Editeaza';
-            $aData['buton_formular_id'] = 'editeaza-categorie';
         }
+
         return $aData;
     }
 }

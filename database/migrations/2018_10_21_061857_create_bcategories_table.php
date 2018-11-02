@@ -15,7 +15,8 @@ class CreateBcategoriesTable extends Migration
     {
         Schema::create('bcategories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bcategory_name', 50)->index();
+            $table->string('bcategory_name', 50);
+            $table->string('code', 50)->index();
             $table->integer('bcategory_parent_id')->nullable();
         });
     }
@@ -28,7 +29,7 @@ class CreateBcategoriesTable extends Migration
     public function down()
     {
         Schema::table('bcategories', function (Blueprint $table) {
-            $table->dropIndex(['bcategory_name']); // Drops index 'bcategory_name'
+            $table->dropIndex(['code']); // Drops index 'bcategory_name'
         });
         Schema::dropIfExists('bcategories');
     }
