@@ -11,9 +11,9 @@ $(document).ready(function () {
             return;
         }
         addSpinner($(this));
-        let sendUrl = "/vms-admin/categorie-blog/";
+        let sendUrl = "/vms-admin/categorie-blog";
         if (data.categorie_code !== '') {
-            sendUrl += data.categorie_code;
+            sendUrl += '/' + data.categorie_code;
         }
 
         $.ajax({
