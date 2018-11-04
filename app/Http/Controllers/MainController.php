@@ -32,7 +32,7 @@ class MainController extends Controller
     public function blogPosts()
     {
         $oPostariBlog = BlogPosts::with('blog_categorie:id,bcategory_name')->with('autor:id,nume,prenume');
-        $oPostariBlog->where('active', '=', true)->get();
+        $oPostariBlog = $oPostariBlog->where('active', '=', true)->get();
         return view('client.pages.postari_blog', ['oPostariBlog' => $oPostariBlog]);
     }
 
