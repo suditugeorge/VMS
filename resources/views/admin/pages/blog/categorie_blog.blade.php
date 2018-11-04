@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-primary" id="{{$pagina_text['buton_formular_id']}}">
+                        <button type="submit" class="btn btn-fill btn-primary" id="{{$pagina_text['buton_formular_id']}}" data-url="{{$general_data['current_url']}}">
                             <i class="fas fa-spinner fa-spin hidden"></i><span class="button-text">{{$pagina_text['buton_formular_text']}}</span>
                         </button>
                     </div>

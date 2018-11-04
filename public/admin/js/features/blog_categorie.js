@@ -11,14 +11,10 @@ $(document).ready(function () {
             return;
         }
         addSpinner($(this));
-        let sendUrl = "/vms-admin/categorie-blog";
-        if (data.categorie_code !== '') {
-            sendUrl += '/' + data.categorie_code;
-        }
 
         $.ajax({
             method: "POST",
-            url: sendUrl,
+            url: data.current_url,
             data: data
         })
             .done(function (result) {
@@ -42,6 +38,7 @@ function getCategorieBlogData() {
     data.categorie_nume = $('#categorie-nume').val().trim();
     data.categorie_code = $('#categorie-code').val().trim();
     data.categorie_parinte = $('#categorie-parinte').val().trim();
+    data.current_url = $("#categorie-blog").data('url').trim();
     data._token = LaravelToken;
     return data;
 }

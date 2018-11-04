@@ -20,6 +20,7 @@ class AdminUtil
         return [
             'sidebar' => $this->sidebar,
             'auth_user' => $this->user,
+            'current_url' => url()->current(),
         ];
     }
 
