@@ -26,6 +26,10 @@ Route::group(['middleware' => ['isLogedInAdmin']], function () {
     Route::get('/vms-admin/blog-posts', 'BlogPostsController@postariBlog');
     Route::match(['get', 'post'], '/vms-admin/postare-blog/{code?}', 'BlogPostsController@editeazaPostareBlog');
     Route::get('/vms-admin/sterge-postare-blog/{code}', 'BlogPostsController@stergePostare');
+
+    //Specii animale
+    Route::get('/vms-admin/animale-specii', 'SpeciiAnimaleController@speciiAnimale');
+    Route::match(['get', 'post'], '/vms-admin/animale-specie/{code?}', 'SpeciiAnimaleController@editeazaSpecieAnimal');
 });
 
 Route::get('/', 'MainController@home');

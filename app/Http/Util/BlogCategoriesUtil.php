@@ -52,6 +52,23 @@ class BlogCategoriesUtil
     {
         $aResult = ['success' => true, 'message' => ''];
 
+        //Categoria este noua
+        if(is_null($sCode)){
+            //Verificam ca nu mai exista o cerere care are codul cu cel ce ar trebui sa fie salvat
+            if(self::count($request['categorie_nume']) > 0){
+                $aResult = ['success' => false, 'message' => 'Mai exista o categorie cu acelasi nume'];
+                return $aResult;
+            }
+        }else{
+            //Categoria trebuie editata
+            //Daca schimba numele trebuie verificat ca numele nou sa nu mai existe
+            $sTmpCode = StringUtil::formatUrl($request['categorie_nume']);
+            if($sTmpCode != $sCode && self::count($sTmpCode) > 0){
+                $aResult = ['success' => false, 'message' => 'Mai exista o categorie cu acelasi nume'];
+                return $aResult;
+            }
+        }
+
         if(is_null($sCode)){
             $oBlogCategorie = new BlogCategories();
         }else{
@@ -67,5 +84,11 @@ class BlogCategoriesUtil
             $aResult['message'] = 'A intervenit o problema. Va rog sa ne contactati telefonic';
         }
         return $aResult;
+    }
+
+    public function count($sNume)
+    {
+        $sCode = StringUtil::formatUrl($sNume);
+        return BlogCategories::where('code', '=', $sCode)->count();
     }
 }

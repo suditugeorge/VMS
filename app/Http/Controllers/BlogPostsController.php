@@ -48,11 +48,8 @@ class BlogPostsController extends Controller
         }
 
         if($request->isMethod('post')){
-            if($code){
-                $aResult = $oBlogPostsUtil->salveazaPostare($request, false, $code);
-            }else{
-                $aResult = $oBlogPostsUtil->salveazaPostare($request, true);
-            }
+            $aResult = $oBlogPostsUtil->salveazaPostare($request, $code);
+
             if($aResult['success']){
                 return redirect('/vms-admin/blog-posts');
             }

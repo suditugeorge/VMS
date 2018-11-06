@@ -45,6 +45,14 @@ class AdminUtil
                         1 => ['text' => 'Postari Blog', 'small_text' => 'PB', 'url' => url('/vms-admin/blog-posts')]
                     ]
                 ],
+                2 => [
+                    'text' => 'Animale',
+                    'icon' => 'fas fa-paw',
+                    'collapse_id' => str_random(10),
+                    'submeniu' => [
+                        0 => ['text' => 'Specii', 'small_text' => 'SP', 'url' => url('/vms-admin/animale-specii')],
+                    ]
+                ],
             ],
         ];
 

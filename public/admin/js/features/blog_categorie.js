@@ -18,7 +18,6 @@ $(document).ready(function () {
             data: data
         })
             .done(function (result) {
-                console.log(result);
                 if (result.success) {
                     window.location.replace('/vms-admin/blog-categories');
                 } else {

@@ -3,17 +3,17 @@
         <nav>
             <ul>
                 <li>
-                    <a href="./pages/about-us.html" class="footer-url">
+                    <a href="{{URL::to('/despre-noi')}}" class="footer-url">
                         Despres noi
                     </a>
                 </li>
                 <li>
-                    <a href="./pages/prices.html" class="footer-url">
+                    <a href="{{URL::to('/tarife')}}" class="footer-url">
                         Tarife
                     </a>
                 </li>
                 <li>
-                    <a href="./pages/contact.html" class="footer-url">
+                    <a href="{{URL::to('/contact')}}" class="footer-url">
                         Contact
                     </a>
                 </li>

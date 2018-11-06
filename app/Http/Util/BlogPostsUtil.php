@@ -22,7 +22,7 @@ class BlogPostsUtil
         $this->aGeneralData = $aGeneralData;
     }
 
-    public function salveazaPostare($request, $bValideazaExistenta = false, $code = null)
+    public function salveazaPostare($request, $code = null)
     {
         $aResult = ['success' => true, 'aErrors' => []];
 
@@ -53,10 +53,22 @@ class BlogPostsUtil
             return $aResult;
         }
 
-        if($bValideazaExistenta){
-            if(self::existaPostare($request->get('postare_nume'))){
+
+        //Postarea este noua
+        if(is_null($code)){
+            //Verificam ca nu mai exista o postare care are codul cu cel ce ar trebui sa fie salvat
+            if(self::count($request['postare_nume']) > 0){
                 $aResult['success'] = false;
-                $aResult['aErrors'][] = "Postarea aceasta mai exista deja";
+                $aResult['aErrors'][] = "Mai exista o categorie cu acelasi nume";
+                return $aResult;
+            }
+        }else{
+            //Postarea trebuie editata
+            //Daca schimba numele trebuie verificat ca numele nou sa nu mai existe
+            $sTmpCode = StringUtil::formatUrl($request['postare_nume']);
+            if($sTmpCode != $code && self::count($sTmpCode) > 0){
+                $aResult['success'] = false;
+                $aResult['aErrors'][] = "Mai exista o categorie cu acelasi nume";
                 return $aResult;
             }
         }
@@ -121,6 +133,12 @@ class BlogPostsUtil
             $aBlogPost['blog_imagine'] = asset('/storage/blog_profile_images/'.$aBlogPost['code'].'.jpg');
         }
         return $aBlogPost;
+    }
+
+    public function count($sNume)
+    {
+        $sCode = StringUtil::formatUrl($sNume);
+        return BlogPosts::where('code', '=', $sCode)->count();
     }
 
 }

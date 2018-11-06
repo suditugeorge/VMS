@@ -1,6 +1,6 @@
 @extends('client.layout')
 
-@section('title', 'Despre noi')
+@section('title', 'Tarife')
 
 @section('content')
     @include('client.components.company-description')

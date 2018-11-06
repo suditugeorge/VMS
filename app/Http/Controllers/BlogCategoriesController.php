@@ -47,25 +47,8 @@ class BlogCategoriesController extends Controller
                 'categorie_de_editat' => $aCategorieBlog,
             ]);
         }elseif ($request->isMethod('post')){
-            //Categoria este noua
-            if(is_null($code)){
-                if($oBlogCategoriesUtil->exists(null, $request['categorie_nume'])){
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Mai exista o categorie cu acelasi nume',
-                    ]);
-                }
-                return response()->json($oBlogCategoriesUtil->salveazaCategorie($request));
-            }
-
-            //Categoria se editeaza
-            if(!$oBlogCategoriesUtil->exists($code, $request['categorie_nume'])){
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Nu exista aceasta categorie'
-                ]);
-            }
             return response()->json($oBlogCategoriesUtil->salveazaCategorie($request, $code));
+            //Categoria este noua
         }
         return abort(404);
     }

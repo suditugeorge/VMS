@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBcategoriesTable extends Migration
+class CreateSpeciiAnimaleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateBcategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bcategories', function (Blueprint $table) {
+        Schema::create('specii_animale', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bcategory_name', 50);
+            $table->string('name', 50);
             $table->string('code', 50)->index();
-            $table->integer('bcategory_parent_id')->nullable();
+            $table->boolean('active')->default(false);
+            $table->string('description')->nullable();
         });
     }
 
@@ -28,9 +29,9 @@ class CreateBcategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('bcategories', function (Blueprint $table) {
+        Schema::table('specii_animale', function (Blueprint $table) {
             $table->dropIndex(['code']); // Drops index 'code'
         });
-        Schema::dropIfExists('bcategories');
+        Schema::dropIfExists('specii_animale');
     }
 }

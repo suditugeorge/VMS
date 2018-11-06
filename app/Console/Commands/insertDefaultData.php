@@ -4,10 +4,12 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Util\StringUtil;
 use App\Role;
 use App\User;
 use App\BlogCategories;
-use App\Http\Util\StringUtil;
+use App\SpeciiAnimale;
+
 
 class insertDefaultData extends Command
 {
@@ -45,6 +47,23 @@ class insertDefaultData extends Command
         $this->insertRoles();
         $this->insertUsers();
         $this->insertBlogCategories();
+        $this->insertSpeciiAnimale();
+    }
+
+    private function insertSpeciiAnimale()
+    {
+        $aSpeciiAnimeleDefault = config('constants.SPECII_ANIMLE');
+        foreach ($aSpeciiAnimeleDefault as $specie_animal_defalut){
+            $code = StringUtil::formatUrl($specie_animal_defalut);
+            $oSpecieAnimal = SpeciiAnimale::where('code', '=', $code)->first();
+            if($oSpecieAnimal){
+               continue;
+            }
+            $oSpecieAnimal = new SpeciiAnimale();
+            $oSpecieAnimal->name = $specie_animal_defalut;
+            $oSpecieAnimal->code = $code;
+            $oSpecieAnimal->save();
+        }
     }
 
     private function insertBlogCategories()
