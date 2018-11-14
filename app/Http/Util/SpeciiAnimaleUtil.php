@@ -24,6 +24,18 @@ class SpeciiAnimaleUtil
         return $oSpeciiAnimale;
     }
 
+    public function getSpeciiAnimaleApi($sQuery)
+    {
+        if($sQuery){
+            $sCode = StringUtil::formatUrl($sQuery);
+            $oSpeciiAnimale = SpeciiAnimale::where('code', 'like', '%'.$sCode.'%');
+        }else{
+            $oSpeciiAnimale = SpeciiAnimale::whereRAW(' 1 = 1 ');
+        }
+        $oSpeciiAnimale = $oSpeciiAnimale->paginate(config('constants.ITEME_PER_PAGINA'));
+        return $oSpeciiAnimale;
+    }
+
     public function getSpecieAnimal($sCode)
     {
         $sCode = StringUtil::formatUrl($sCode);

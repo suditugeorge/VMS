@@ -35,8 +35,16 @@ Route::group(['middleware' => ['isLogedInAdmin']], function () {
     //Rase animale
 
     Route::get('/vms-admin/animale-rase', 'RaseAnimaleController@raseAnimale');
-    Route::match(['get', 'post'], '/vms-admin/animale-rase/{code?}', 'RaseAnimaleController@editeazaRaseAnimal');
-    Route::get('/vms-admin/sterge-animale-rase/{code}', 'RaseAnimaleController@stergeRasa');
+    Route::match(['get', 'post'], '/vms-admin/animale-rasa/{code?}', 'RaseAnimaleController@editeazaRaseAnimal');
+    Route::get('/vms-admin/sterge-animale-rasa/{code}', 'RaseAnimaleController@stergeRasa');
+
+
+    /*API-uri*/
+
+    //Specii animale
+    Route::get('/api/animale-rase', 'ApiController@speciiAnimale')->name('api_specii_animale');
+
+
 });
 
 Route::get('/', 'MainController@home');

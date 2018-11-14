@@ -9,6 +9,7 @@
 namespace App\Http\Util;
 
 use App\Http\Util\StringUtil;
+use App\SpeciiAnimale;
 use Illuminate\Http\Request;
 use App\RaseAnimale;
 
@@ -20,14 +21,15 @@ class RaseAnimaleUtil
 
     public function getRaseAnimale()
     {
-        $oRaseAnimale = RaseAnimale::with('specie:id,name')->get();
+        $oRaseAnimale = RaseAnimale::with('specie:id,name')->paginate(config('constants.ITEME_PER_PAGINA'));
+        $oRaseAnimale->withPath('/vms-admin/animale-rase');
         return $oRaseAnimale;
     }
 
     public function getRasaAnimal($sCode)
     {
         $sCode = StringUtil::formatUrl($sCode);
-        $oSpecieAnimal = RaseAnimale::with('specie:id,name')->where('code', '=', $sCode)->first();
+        $oSpecieAnimal = RaseAnimale::with('specie:id,name,code')->where('code', '=', $sCode)->first();
         if(!$oSpecieAnimal){
             return null;
         }
@@ -40,7 +42,7 @@ class RaseAnimaleUtil
         return RaseAnimale::where('code', '=', $sCode)->count();
     }
 
-    public function salveazaSpecie(Request $request, $sCode = null)
+    public function salveazaRasa(Request $request, $sCode = null)
     {
         $aResult = ['success' => true, 'message' => ''];
 
@@ -70,6 +72,8 @@ class RaseAnimaleUtil
         $oRaseAnimal->name = $request['nume'];
         $oRaseAnimal->code = StringUtil::formatUrl($oRaseAnimal->name);
         $oRaseAnimal->active = filter_var($request['active'], FILTER_VALIDATE_BOOLEAN);
+        $oRaseAnimal->animal_species_id = SpeciiAnimale::where('code','=',$request['specie'])->first()->id;
+        $oRaseAnimal->description = $request['descirere'];
         $oRaseAnimal->save();
         if(!$oRaseAnimal->id){
             $aResult['success'] = false;

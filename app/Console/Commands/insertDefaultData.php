@@ -61,6 +61,7 @@ class insertDefaultData extends Command
         $bar->advance();
         $this->insertSpeciiAnimale();
         $bar->finish();
+        echo "\n";
     }
 
     private function downloadAndInsertRaseAnimale($sSpecieCod = null)

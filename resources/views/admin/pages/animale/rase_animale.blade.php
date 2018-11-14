@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title"> Rase animale</h4>
-                            <div class="mr-auto"><a href="{{URL::to('/vms-admin/animale-rase')}}" class="btn btn-success">Adauga rasa</a></div>
+                            <div class="mr-auto"><a href="{{URL::to('/vms-admin/animale-rasa')}}" class="btn btn-success">Adauga rasa</a></div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -50,10 +50,10 @@
                                                 {{$rasa['specie']['name']}}
                                             </td>
                                             <td class="text-right">
-                                                <a href="/vms-admin/animale-rase/{{$rasa['code']}}" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
+                                                <a href="/vms-admin/animale-rasa/{{$rasa['code']}}" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
                                                     <i class="now-ui-icons ui-2_settings-90"></i>
                                                 </a>
-                                                <a href="/vms-admin/sterge-animale-rase/{{$rasa['code']}}" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                                                <a href="/vms-admin/sterge-animale-rasa/{{$rasa['code']}}" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
                                                     <i class="now-ui-icons ui-1_simple-remove"></i>
                                                 </a>
                                             </td>
@@ -62,6 +62,10 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                        </div>
+                        <div class="card-footer ">
+                            {{$rase_animale->links()}}
                         </div>
                     </div>
                 </div>

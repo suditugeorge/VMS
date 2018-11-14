@@ -35,23 +35,23 @@
 <script type="text/javascript" src="{{ URL::asset('/admin/js/core/popper.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('/admin/js/core/bootstrap.min.js') }}"></script>
 
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/moment.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-switch.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/sweetalert2.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery.validate.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-selectpicker.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-datetimepicker.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery.dataTables.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-tagsinput.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jasny-bootstrap.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/fullcalendar.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery-jvectormap.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/nouislider.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/chartjs.min.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-notify.js') }}"></script>
-<script async type="text/javascript" src="{{ URL::asset('/admin/js/now-ui-dashboard.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/moment.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-switch.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/sweetalert2.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery.validate.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-selectpicker.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-datetimepicker.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery.dataTables.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-tagsinput.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jasny-bootstrap.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/fullcalendar.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/jquery-jvectormap.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/nouislider.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/chartjs.min.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/plugins/bootstrap-notify.js') }}"></script>
+<script  type="text/javascript" src="{{ URL::asset('/admin/js/now-ui-dashboard.js') }}"></script>
 
 <script type="text/javascript" src="{{ URL::asset('/admin/js/tetravet.js') }}"></script>
 

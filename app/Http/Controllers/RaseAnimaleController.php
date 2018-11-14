@@ -22,11 +22,11 @@ class RaseAnimaleController extends Controller
         return view('admin.pages.animale.rase_animale',[
             'show_nagigation' => true,
             'general_data' => $aGeneral_data,
-            'rase_animale' => $oRaseAnimale
+            'rase_animale' => $oRaseAnimale,
         ]);
     }
 
-    public function editeazaRaseAnimal(Request $request, $code)
+    public function editeazaRaseAnimal(Request $request, $code = null)
     {
         $oRaseAnimalUtil = new RaseAnimaleUtil();
         if ($request->isMethod('get')) {
@@ -41,13 +41,27 @@ class RaseAnimaleController extends Controller
                 }
             }
 
-            return view('admin.pages.animale.specie_animale_editeaza', [
+            return view('admin.pages.animale.rase_animale_editeaza', [
                 'show_nagigation' => true,
                 'general_data' => $aGeneral_data,
                 'rase_de_editat' => $oRaseAnimal,
+                'api_url' => route('api_specii_animale'),
             ]);
         }elseif ($request->isMethod('post')){
-            return response()->json($oRaseAnimalUtil->salveazaSpecie($request, $code));
+            return response()->json($oRaseAnimalUtil->salveazaRasa($request, $code));
         }
+    }
+
+    public function stergeRasa(Request $request, $code)
+    {
+        $oRasaUtil = new RaseAnimaleUtil();
+        $oRasaAnimal = $oRasaUtil->getRasaAnimal($code);
+
+        if(is_null($oRasaAnimal)){
+            return abort(404);
+        }
+
+        $oRasaAnimal->delete();
+        return redirect('/vms-admin/animale-rase');
     }
 }
