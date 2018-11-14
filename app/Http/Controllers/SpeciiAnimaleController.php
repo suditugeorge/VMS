@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 use App\Http\Util\SpeciiAnimaleUtil;
 use Illuminate\Http\Request;
 use App\Http\Util\AdminUtil;
-use App\SpeciiAnimale;
 
 class SpeciiAnimaleController extends Controller
 {
@@ -51,5 +50,18 @@ class SpeciiAnimaleController extends Controller
         }elseif ($request->isMethod('post')){
             return response()->json($oSpecieAnimalUtil->salveazaSpecie($request, $code));
         }
+    }
+
+    public function stergeSpecie(Request $request, $code)
+    {
+        $oSpecieUtil = new SpeciiAnimaleUtil();
+        $oSpecieAnimale = $oSpecieUtil->getSpecieAnimal($code);
+
+        if(is_null($oSpecieAnimale)){
+            return abort(404);
+        }
+
+        $oSpecieAnimale->delete();
+        return redirect('/vms-admin/animale-specii');
     }
 }

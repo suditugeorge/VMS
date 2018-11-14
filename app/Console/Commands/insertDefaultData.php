@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\RaseAnimale;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Util\StringUtil;
@@ -9,6 +10,9 @@ use App\Role;
 use App\User;
 use App\BlogCategories;
 use App\SpeciiAnimale;
+
+use Symfony\Component\DomCrawler\Crawler;
+use App\Http\Util\UrlUtil;
 
 
 class insertDefaultData extends Command
@@ -44,10 +48,63 @@ class insertDefaultData extends Command
      */
     public function handle()
     {
+        $bar = $this->output->createProgressBar(6);
+        $this->downloadAndInsertRaseAnimale('canide');
+        $bar->advance();
+        $this->downloadAndInsertRaseAnimale('feline');
+        $bar->advance();
         $this->insertRoles();
+        $bar->advance();
         $this->insertUsers();
+        $bar->advance();
         $this->insertBlogCategories();
+        $bar->advance();
         $this->insertSpeciiAnimale();
+        $bar->finish();
+    }
+
+    private function downloadAndInsertRaseAnimale($sSpecieCod = null)
+    {
+        $oSpecie = SpeciiAnimale::where('code', '=', $sSpecieCod)->first();
+        if($sSpecieCod == 'canide'){
+            $sUrl = 'https://ro.wikipedia.org/wiki/List%C4%83_de_rase_de_c%C3%A2ini';
+        }elseif ($sSpecieCod == 'feline'){
+            $sUrl = 'https://ro.wikipedia.org/wiki/List%C4%83_de_rase_de_pisici';
+        }
+
+        if(!$oSpecie){
+            return;
+        }
+
+        $this->downloadRase($sUrl, $oSpecie->id);
+
+    }
+
+    private function downloadRase($sUrl, $iSpecieID)
+    {
+        $oUrlUtil = new UrlUtil();
+        $sHtml = $oUrlUtil->get_data($sUrl);
+        $oCrawler = new Crawler($sHtml);
+        $oListaFiltrata = $oCrawler->filter('.mw-parser-output')->filter('ul');
+
+        foreach ($oListaFiltrata as $oListaUL){
+            foreach ($oListaUL->childNodes as $oListaLI){
+                if(!$oListaLI instanceof \DOMElement){
+                    continue;
+                }
+                $this->insertRasaAnimal($oListaLI->firstChild->nodeValue, $iSpecieID);
+            }
+        }
+    }
+
+    private function insertRasaAnimal($sNume, $iSpecieID)
+    {
+        $oRasaAnimal = new RaseAnimale();
+        $oRasaAnimal->name = trim($sNume);
+        $oRasaAnimal->code = StringUtil::formatUrl(trim($sNume));
+        $oRasaAnimal->active = true;
+        $oRasaAnimal->animal_species_id = $iSpecieID;
+        $oRasaAnimal->save();
     }
 
     private function insertSpeciiAnimale()

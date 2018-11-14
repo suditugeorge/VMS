@@ -51,6 +51,7 @@ class AdminUtil
                     'collapse_id' => str_random(10),
                     'submeniu' => [
                         0 => ['text' => 'Specii', 'small_text' => 'SP', 'url' => url('/vms-admin/animale-specii')],
+                        1 => ['text' => 'Rase', 'small_text' => 'RS', 'url' => url('/vms-admin/animale-rase')],
                     ]
                 ],
             ],
