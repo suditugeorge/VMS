@@ -10,6 +10,7 @@ use App\Role;
 use App\User;
 use App\BlogCategories;
 use App\SpeciiAnimale;
+use App\Tari;
 
 use Symfony\Component\DomCrawler\Crawler;
 use App\Http\Util\UrlUtil;
@@ -48,20 +49,46 @@ class insertDefaultData extends Command
      */
     public function handle()
     {
-        $bar = $this->output->createProgressBar(6);
+        $bar = $this->output->createProgressBar(7);
+        $bar->start();
+        $this->info('Inseram tari');
+        $this->downloadAndInsertTari();
+        $bar->advance();
+        $this->info('Inseram rase animale');
         $this->downloadAndInsertRaseAnimale('canide');
         $bar->advance();
         $this->downloadAndInsertRaseAnimale('feline');
         $bar->advance();
+        $this->info('Inseram roluri in aplicatie');
         $this->insertRoles();
         $bar->advance();
+        $this->info('Inseram useri default');
         $this->insertUsers();
         $bar->advance();
+        $this->info('Inseram categorii blog');
         $this->insertBlogCategories();
         $bar->advance();
+        $this->info('Inseram specii animale');
         $this->insertSpeciiAnimale();
         $bar->finish();
         echo "\n";
+        return;
+    }
+
+    private function downloadAndInsertTari()
+    {
+        $sUrl = 'http://countryapi.gear.host/v1/Country/getCountries';
+        $oUrlUtil = new UrlUtil();
+        $aCountries = json_decode($oUrlUtil->get_data($sUrl), TRUE);
+        foreach ($aCountries['Response'] as $country){
+            $sName = trim(preg_replace("/\([^)]+\)/","",$country['Name']));
+            if(Tari::where('nume','=', $sName)->first()){
+                continue;
+            }
+            $oTari = new Tari();
+            $oTari->nume = $sName;
+            $oTari->save();
+        }
     }
 
     private function downloadAndInsertRaseAnimale($sSpecieCod = null)
@@ -100,9 +127,13 @@ class insertDefaultData extends Command
 
     private function insertRasaAnimal($sNume, $iSpecieID)
     {
+        $sCode = StringUtil::formatUrl(trim($sNume));
+        if(RaseAnimale::where('code', '=', $sCode)->first()){
+            return;
+        }
         $oRasaAnimal = new RaseAnimale();
         $oRasaAnimal->name = trim($sNume);
-        $oRasaAnimal->code = StringUtil::formatUrl(trim($sNume));
+        $oRasaAnimal->code = $sCode;
         $oRasaAnimal->active = true;
         $oRasaAnimal->animal_species_id = $iSpecieID;
         $oRasaAnimal->save();
