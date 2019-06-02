@@ -41,9 +41,9 @@
                                 </div>
                                 <div class="description">
                                     <h4 class="info-title">Program</h4>
-                                    <p> Luni – Vineri : 9 – 21
+                                    <p> Luni – Vineri : 9 – 20
                                         <br> Sambata : 9 – 15
-                                        <br> Duminica : 9 – 13
+                                        <br> Duminica : Inchis
                                     </p>
                                 </div>
                             </div>
